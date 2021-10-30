@@ -2,7 +2,7 @@
 // Link to Project Assets
 import {config} from './buildconfig.js'
 import {Unity} from './Unity.js'
-import {Router} from './Router/js'
+import {Router} from './Router.js'
 
 export const settings = {
     name: "Kerl",
