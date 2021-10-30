@@ -1,4 +1,4 @@
-function createUnityInstance(canvas, config, onProgress) {
+export function createUnityInstance(canvas, config, onProgress) {
   onProgress = onProgress || function () {};
 
   function errorListener(e) {
@@ -177,6 +177,7 @@ function createUnityInstance(canvas, config, onProgress) {
 
     // TODO: Add mobile device identifier, e.g. SM-G960U
 
+    let gl, glVersion;
     canvas = document.createElement("canvas");
     if (canvas) {
       gl = canvas.getContext("webgl2");
