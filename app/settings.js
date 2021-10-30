@@ -16,10 +16,10 @@ export const settings = {
     graph:
     {
       nodes: [
-        {name:'eeg', class: brainsatplay.plugins.biosignals.EEG},
-        {name:'neurofeedback', class: brainsatplay.plugins.algorithms.Neurofeedback, params: {metric: 'Focus'}},
-        {name:'command', class: brainsatplay.plugins.controls.Event},
-        {name:'Brainstorm', class: brainsatplay.plugins.networking.Brainstorm, params: {
+        {name:'eeg', class: "EEG"},
+        {name:'neurofeedback', class: "Neurofeedback", params: {metric: 'Focus'}},
+        {name:'command', class: "Event"},
+        {name:'Brainstorm', class: "Brainstorm", params: {
 
           onUserConnected: (u) => {
             let parser = settings.graph.nodes.find(n => n.name === 'Router')
@@ -74,7 +74,7 @@ export const settings = {
         },
         {
           name:'ui', 
-          class: brainsatplay.plugins.interfaces.UI
+          class: "DOM"
         }
     ],
 
@@ -106,9 +106,18 @@ export const settings = {
         {
           source: 'Router:3',
           target: 'unity:Player4Update',
+        },
+        {
+          source: 'unity:element',
+          target: 'ui:content',
         }
       ]
     },
-    version: "0.0.36",
+    intro: {
+      title: false,
+      mode: 'multi',
+      login: false
+    },
+    version: "0.0.38",
     connect: true
 }

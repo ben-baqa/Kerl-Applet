@@ -11,7 +11,6 @@ class Router{
             userMap: new Map()
         }
 
-        
 
         // Port Definition
         this.ports = {
@@ -20,8 +19,7 @@ class Router{
                 output: {type: null},
                 onUpdate: (user) => {
                     let i = this.props.userMap.get(user.id)
-                    console.log(i, user)
-                    if (i) this.update(i, user)
+                    if (i != null) this.update(i, user)
                 },
             }
         }
@@ -30,6 +28,7 @@ class Router{
             this.ports[i] = {
                 input: {type: undefined},
                 output: {type: undefined},
+                onUpdate: (user) => {return user}
             }
         }
     }
