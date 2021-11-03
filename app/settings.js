@@ -42,6 +42,8 @@ export const settings = {
               // Parse Messages from Unity
               if (typeof ev === 'string'){
                 console.log('MESSAGE: ' + ev)
+              }else if (typeof ev == "Array"){
+                console.log('Array Event received')
               }
             },
             commands: 
@@ -68,7 +70,13 @@ export const settings = {
                 object: 'GameApplication',
                 function: 'Player4Update',
                 type: 'boolean'
-              }
+              },
+
+              {
+                object: 'GameApplication',
+                function: 'UpdateState',
+                type: 'array'
+              },
             ]
           }
         },
