@@ -30,9 +30,10 @@ export class Unity{
             },
             unityEvent: {
                 input: {type: null},
-                output: {type: 'string'},
+                output: {type: String},
                 onUpdate: (user) => { 
                     this.ports.onUnityEvent.data(user.value)
+                    return user
                 }
             },
 
@@ -42,7 +43,7 @@ export class Unity{
                     console.log("OnUnityEvent with parameters call" + param)
                 },
                 input: {type: Function},
-                output: {type: 'string'}
+                output: {type: String}
             },
 
             // Declare commands that can be sent to Unity

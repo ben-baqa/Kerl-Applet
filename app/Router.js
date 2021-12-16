@@ -20,7 +20,26 @@ class Router{
                 onUpdate: (user) => {
                     let i = this.props.userMap.get(user.id)
                     if (i != null) this.update(i, user)
+                    
+                    // want to trigger the SetHost function in a unity instance
+                    // with the value i == 0 (first player who has joined)
+                    // [not working]
+                    this.update('designateHost', {isHost: i == 0})
+                    console.log(`Player ${i + 1} Joined`)
                 },
+            },
+            designateHost: {
+                input: {type: Boolean},
+                output: {type: Boolean},
+                onUpdate: (user) => {
+                    console.log(`value: ${user.isHost}`)
+                    return user
+                }
+            },
+            message: {
+                input: {type: String},
+                output: {type: String},
+                onUpdate: (user) => user
             }
         }
 
@@ -39,7 +58,12 @@ class Router{
     deinit = () => {}
 
     _userAdded = (user) => {
-        if (this.props.userMap.size < this.props.userLimit) this.props.userMap.set(user.id, this.props.userMap.size)
+        // console.log("Users: " + user.id)
+        // this.ports.designateHost(this.props.userMap.size == 0)
+
+        if (this.props.userMap.size < this.props.userLimit){
+            this.props.userMap.set(user.id, this.props.userMap.size)
+        }
     }
 
     _userRemoved = (user) => {

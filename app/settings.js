@@ -74,9 +74,20 @@ export const settings = {
 
               {
                 object: 'GameApplication',
-                function: 'UpdateState',
-                type: 'array'
+                function: 'ReceiveMessage',
+                type: String
               },
+              {
+                object: 'GameApplication',
+                function: 'SetHost',
+                type: Boolean
+              },
+
+              // {
+              //   object: 'GameApplication',
+              //   function: 'UpdateState',
+              //   type: 'array'
+              // },
             ]
           }
         },
@@ -115,6 +126,21 @@ export const settings = {
           source: 'Router:3',
           target: 'unity:Player4Update',
         },
+
+        {
+          source: 'Router:message',
+          target: 'unity:ReceiveMessage'
+        },
+        {
+          source: 'unity:unityEvent',
+          target: 'Router:message'
+        },
+
+        {
+          source: 'Router:designateHost',
+          target: 'unity:SetHost'
+        },
+
         {
           source: 'unity:element',
           target: 'ui:content',
