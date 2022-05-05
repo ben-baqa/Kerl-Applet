@@ -19,18 +19,21 @@ class Router{
                 output: {type: null},
                 onUpdate: (user) => {
                     let i = this.props.userMap.get(user.id)
-                    if (i != null) this.update(i, user)
+                    if (i != null) {
+                        this.update(i, user)
+                        this.update(`message${i}`, user)
+                    }
                     
                     // want to trigger the SetHost function in a unity instance
                     // with the value i == 0 (first player who has joined)
                     // [not working]
-                    this.update('designateHost', {isHost: i == 0})
+                    // this.update('designateHost', {isHost: i == 0})
                     console.log(`Player ${i + 1} Joined`)
                 },
             },
             designateHost: {
-                input: {type: Boolean},
-                output: {type: Boolean},
+                input: {type: Number},
+                output: {type: Number},
                 onUpdate: (user) => {
                     console.log(`value: ${user.isHost}`)
                     return user
@@ -48,6 +51,11 @@ class Router{
                 input: {type: undefined},
                 output: {type: undefined},
                 onUpdate: (user) => {return user}
+            }
+            this.ports[`message${i}`] = {
+                input: {type: String},
+                output: {type: String},
+                onUpdate: (user) => user
             }
         }
     }

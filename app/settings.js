@@ -53,23 +53,41 @@ export const settings = {
                 function: 'Player1Update',
                 type: 'boolean'
               },
-
               {
                 object: 'GameApplication',
                 function: 'Player2Update',
                 type: 'boolean'
               },
-
               {
                 object: 'GameApplication',
                 function: 'Player3Update',
                 type: 'boolean'
               },
-
               {
                 object: 'GameApplication',
                 function: 'Player4Update',
                 type: 'boolean'
+              },
+
+              {
+                object: 'GameApplication',
+                function: 'Player1Message',
+                type: String
+              },
+              {
+                object: 'GameApplication',
+                function: 'Player2Message',
+                type: String
+              },
+              {
+                object: 'GameApplication',
+                function: 'Player3Message',
+                type: String
+              },
+              {
+                object: 'GameApplication',
+                function: 'Player4Message',
+                type: String
               },
 
               {
@@ -80,7 +98,7 @@ export const settings = {
               {
                 object: 'GameApplication',
                 function: 'SetHost',
-                type: Boolean
+                type: Number
               },
 
               // {
@@ -110,6 +128,7 @@ export const settings = {
         },
         
         // Routes
+        // Player inputs
         {
           source: 'Router:0',
           target: 'unity:Player1Update',
@@ -127,6 +146,42 @@ export const settings = {
           target: 'unity:Player4Update',
         },
 
+        // message sources
+        {
+          source: 'Router:message0',
+          target: 'unity:Player1Message'
+        },
+        {
+          source: 'Router:message1',
+          target: 'unity:Player2Message'
+        },
+        {
+          source: 'Router:message2',
+          target: 'unity:Player3Message'
+        },
+        {
+          source: 'Router:message3',
+          target: 'unity:Player4Message'
+        },
+
+        {
+          source: 'unity:unityEvent',
+          target: 'Router:message0'
+        },
+        {
+          source: 'unity:unityEvent',
+          target: 'Router:message1'
+        },
+        {
+          source: 'unity:unityEvent',
+          target: 'Router:message2'
+        },
+        {
+          source: 'unity:unityEvent',
+          target: 'Router:message3'
+        },
+
+
         {
           source: 'Router:message',
           target: 'unity:ReceiveMessage'
@@ -136,10 +191,10 @@ export const settings = {
           target: 'Router:message'
         },
 
-        {
-          source: 'Router:designateHost',
-          target: 'unity:SetHost'
-        },
+        // {
+        //   source: 'Router:designateHost',
+        //   target: 'unity:SetHost'
+        // },
 
         {
           source: 'unity:element',
